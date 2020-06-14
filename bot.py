@@ -13,20 +13,19 @@ from twilio.twiml.messaging_response import MessagingResponse
 app = Flask(__name__)
 
 place_template_instance = """
-**%s**
+```**%s**
 %.1f Km de distância
 Nota Geral %.1f %s
 Preço: %s
 Avaliações: %d
-%s
+%s```
 """
 
 places_template = """
 Aqui estão algumas opções que conseguimos encontrar:
 %s
 
-Para navegar, <a href="http://www.google.com">Clique aqui</a>
-Para detalhes, Y
+Para mais detalhes e outras opções, acesse https://www.google.com?id=469827346
 """
 
 def getRating(rating):
