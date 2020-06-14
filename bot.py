@@ -23,12 +23,10 @@ Avaliações: %d
 
 places_template = """
 Aqui estão algumas opções que conseguimos encontrar:
-
 %s
 
-Para navegar, X
+Para navegar, <a href="http://www.google.com">Clique aqui</a>
 Para detalhes, Y
-
 """
 
 def getRating(rating):
