@@ -14,7 +14,7 @@ app = Flask(__name__)
 place_template_instance = """
 *%s*
 %.1f Km de distância
-Nota Geral %.1f
+Nota Geral %.1f %s
 Preço: %d
 Avaliações: %d
 %s
@@ -28,6 +28,9 @@ HEADER
 FOOTER
 
 """
+
+def getRating(rating):
+    return '☆' * int(rating)
 
 @app.route('/bot', methods=['POST'])
 def bot():
@@ -54,7 +57,7 @@ def bot():
 
         for place in places:
             services_str = "\n".join(["- " + TypeToService[int(service["type"])] for service in place['services']])
-            place_str = place_template_instance % (place['name'], place['distance'], place['rating'], place['price'], place['numEvaluations'], services_str)
+            place_str = place_template_instance % (place['name'], place['distance'], place['rating'], getRating(place['rating']), place['price'], place['numEvaluations'], services_str)
             items.append(place_str)
 
         msg.body(places_template % '\n'.join(items))
