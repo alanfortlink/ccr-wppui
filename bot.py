@@ -1,7 +1,7 @@
 #https://ccr-whatsapp.herokuapp.com/ -*- coding: utf-8 -*-
 
-TypeToService = ["", "Wifi", "Banho", "Comida", "Estacionamento", "Pernoite", "Borracharia"]
-TypeToIcon = ["", "📡", "🚿", "🍲", "🅿️", "🛏️", "🛠️"]
+TypeToService = ["", "Wifi", "Banho", "Comida", "Estacionamento", "Pernoite", "Borracharia", "Atendimento Médico"]
+TypeToIcon = ["", "📡", "🚿", "🍲", "🅿️", "🛏️", "🛠️", "🏥"]
 
 from data import get_places, get_weather
 
