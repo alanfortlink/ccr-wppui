@@ -105,7 +105,7 @@ def bot():
     if not responded:
         body = ""
         if add_extra:
-            body = "Alerta de Mau Tempo Agora no KM 128, Atenção com a pista molhada!\n"
+            body = "Alerta de Mau Tempo Agora no KM 128, Atenção com a pista molhada!\n\n"
 
         body += 'Oi, Sou o Caminhoneiro Zap. Me envie sua localização que eu vejo os melhores pontos de parada próximos a você.'
         msg.body(body)
