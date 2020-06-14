@@ -8,7 +8,10 @@ from data import get_places, get_weather
 from flask import Flask, request
 import os
 import requests
+import random
 from twilio.twiml.messaging_response import MessagingResponse
+
+call = 0
 
 app = Flask(__name__)
 
@@ -27,11 +30,15 @@ Aqui estão algumas opções que conseguimos encontrar:
 %s
 
 Para mais detalhes e outras opções, acesse https://www.caminhoneirozap.com.br?id=469827346-ae-28374-121365fe
-%s
 """
 
-def getExtra():
-    return ""
+def getRandomMessage():
+    messages = [
+            'http://www.google.com'
+    ]
+
+    index = random.nextInt(0, len(messages))
+    return messages[index]
 
 def getRating(rating):
     return '⭐️' * int(rating)
@@ -74,11 +81,14 @@ def bot():
             place_str = place_template_instance % (place['name'], place['distance'], place['rating'], getRating(place['rating']), getPrice(place['price']), place['numEvaluations'], services_str)
             items.append(place_str)
 
-        msg.body(places_template % (get_weather(location_lat, location_lon), '\n'.join(items), getExtra()))
+        msg.body(places_template % (get_weather(location_lat, location_lon), '\n'.join(items)))
         responded = True
 
-        # return a cat pic
-        # msg.media('https://cataas.com/cat')
+    call += 1
+    if call == 5:
+        call = 0
+        msg.media(getRandomMessage())
+
     if not responded:
         msg.body('Olá! Envie a sua localização para consultar os pontos de parada cadastrados! Envie Ajuda para números de emergência, Para mais informações acesse: http://www.google.com.br')
 
