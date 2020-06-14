@@ -25,7 +25,7 @@ places_template = """
 Aqui estão algumas opções que conseguimos encontrar:
 %s
 
-Para mais detalhes e outras opções, acesse https://www.google.com?id=469827346
+Para mais detalhes e outras opções, acesse https://www.caminhoneirozap.com.br?id=469827346-ae-28374-121365fe
 """
 
 def getRating(rating):
