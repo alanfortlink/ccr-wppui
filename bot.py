@@ -27,9 +27,9 @@ def bot():
     location_lon = request.values.get('Longitude', '').lower()
 
     if incoming_msg == '' and request.json:
-        incoming_msg request.json.get('Body')
-        location_lat request.json.get('Latitude')
-        location_lon request.json.get('Longitude')
+        incoming_msg = request.json.get('Body')
+        location_lat = request.json.get('Latitude')
+        location_lon = request.json.get('Longitude')
 
     resp = MessagingResponse()
 
