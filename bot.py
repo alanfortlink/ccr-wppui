@@ -3,7 +3,7 @@
 TypeToService = ["", "Wifi", "Banho", "Comida", "Estacionamento", "Pernoite", "Borracharia"]
 TypeToIcon = ["", "📡", "🚿", "🍲", "🅿️", "🛏️", "🛠️"]
 
-from data import get_places
+from data import get_places, get_weather
 
 from flask import Flask, request
 import os
@@ -22,6 +22,7 @@ Avaliações: %d
 """
 
 places_template = """
+%s 
 Aqui estão algumas opções que conseguimos encontrar:
 %s
 
@@ -69,7 +70,7 @@ def bot():
             place_str = place_template_instance % (place['name'], place['distance'], place['rating'], getRating(place['rating']), getPrice(place['price']), place['numEvaluations'], services_str)
             items.append(place_str)
 
-        msg.body(places_template % '\n'.join(items))
+        msg.body(places_template % (get_weather(location_lat, location_lon), '\n'.join(items)))
         responded = True
 
         # return a cat pic
