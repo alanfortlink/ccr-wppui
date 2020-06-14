@@ -25,7 +25,10 @@ def get_places(lat, lon, id):
     places = places[0:2]
     return places
 
-def get_weather(lat, lon):
+def get_weather(lat, lon, extra):
+    if extra:
+        return "Alerta de Mau Tempo Agora no KM 128, Atenção com a pista molhada!"
+
     url = "http://api.openweathermap.org/data/2.5/weather?lat="+str(lat)+"&lon="+str(lon)+"&appid=cb58e3ec07de6c3e5f60e7dc8212cd0d"
     print(url)
     r = requests.get(url, verify=False)

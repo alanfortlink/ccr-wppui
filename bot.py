@@ -40,7 +40,7 @@ def getRandomMessage():
     ]
 
     index = random.randint(0, len(messages) - 1)
-    return messages[index]
+    return index == len(messages) - 1, messages[index]
 
 def getRating(rating):
     return '⭐️' * int(rating)
@@ -72,6 +72,19 @@ def bot():
 
     responded = False
 
+    outro = 0
+
+    add_extra = False
+
+    global calls
+    calls += 1
+    if calls == 3:
+        calls = 0
+
+        isLast, media = getRandomMessage()
+        add_extra = isLast
+        msg.media(media)
+
     # Received a location
     if location_lat and location_lon:
         places = get_places(location_lat, location_lon, "0")
@@ -83,17 +96,13 @@ def bot():
             place_str = place_template_instance % (place['name'], place['distance'], place['rating'], getRating(place['rating']), getPrice(place['price']), place['numEvaluations'], services_str)
             items.append(place_str)
 
-        msg.body(places_template % (get_weather(location_lat, location_lon), '\n'.join(items)))
+        body = ""
+        body += places_template % (get_weather(location_lat, location_lon, add_extra), '\n'.join(items))
+        msg.body(body)
         responded = True
 
-    global calls
-    calls += 1
-    if calls == 3:
-        calls = 0
-        msg.media(getRandomMessage())
-
     if not responded:
-        msg.body('Oi, Sou o Caminhoneiro Zap. Me envie sua localização que eu veja os melhores pontos de parada próximos a você.')
+        msg.body('Oi, Sou o Caminhoneiro Zap. Me envie sua localização que eu vejo os melhores pontos de parada próximos a você.')
         msg.media('https://www.infocompu.com.br/infocom/wp-content/uploads/2018/01/Localizacao-WhatsApp01.jpg')
 
     return str(resp)
