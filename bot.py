@@ -94,7 +94,7 @@ def bot():
 
         for place in places:
             services_str = "\n".join([TypeToIcon[int(service["type"])] + " " + TypeToService[int(service["type"])] for service in place['services']])
-            place_str = place_template_instance % (place['name'], place['distance'], place['rating'], getRating(place['rating']), getPrice(place['price']), place['numEvaluations'], services_str, str(place['_id']))
+            place_str = place_template_instance % (place['name'], place['distance'], place['rating'], getRating(place['rating']), getPrice(place['price']), place['numEvaluations'], services_str, str(place['id']))
             items.append(place_str)
 
         body = ""
