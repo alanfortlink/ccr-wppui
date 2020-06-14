@@ -22,9 +22,14 @@ FOOTER\\n
 
 @app.route('/bot', methods=['POST'])
 def bot():
-    incoming_msg = request.values.get('Body', request.json.get('Body', '')).lower()
-    location_lat = request.values.get('Latitude', request.json.get('Latitude', '')).lower()
-    location_lon = request.values.get('Longitude', request.json.get('Longitude', '')).lower()
+    incoming_msg = request.values.get('Body', '').lower()
+    location_lat = request.values.get('Latitude', '').lower()
+    location_lon = request.values.get('Longitude', '').lower()
+
+    if incoming_msg == '' and request.json:
+        incoming_msg request.json.get('Body')
+        location_lat request.json.get('Latitude')
+        location_lon request.json.get('Longitude')
 
     resp = MessagingResponse()
 
