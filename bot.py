@@ -93,7 +93,8 @@ def bot():
         msg.media(getRandomMessage())
 
     if not responded:
-        msg.body('Olá! Envie a sua localização para consultar os pontos de parada cadastrados! Envie Ajuda para números de emergência, Para mais informações acesse: http://www.google.com.br')
+        msg.body('Oi, Sou o Caminhoneiro Zap. Me envie sua localização que eu veja os melhores pontos de parada próximos a você.')
+        msg.media('https://www.infocompu.com.br/infocom/wp-content/uploads/2018/01/Localizacao-WhatsApp01.jpg')
 
     return str(resp)
 
