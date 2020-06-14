@@ -1,4 +1,4 @@
-#https://ccr-whatsapp.herokuapp.com/ -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 TypeToService = ["", "Wifi", "Banho", "Comida", "Estacionamento", "Pernoite", "Borracharia", "Atendimento Médico"]
 TypeToIcon = ["", "📡", "🚿", "🍲", "🅿️", "🛏️", "🛠️", "🏥"]
