@@ -102,7 +102,12 @@ def bot():
         responded = True
 
     if not responded:
-        msg.body('Oi, Sou o Caminhoneiro Zap. Me envie sua localização que eu vejo os melhores pontos de parada próximos a você.')
+        body = ""
+        if add_extra:
+            body = "Alerta de Mau Tempo Agora no KM 128, Atenção com a pista molhada!\n"
+
+        body += 'Oi, Sou o Caminhoneiro Zap. Me envie sua localização que eu vejo os melhores pontos de parada próximos a você.'
+        msg.body(body)
         msg.media('https://www.infocompu.com.br/infocom/wp-content/uploads/2018/01/Localizacao-WhatsApp01.jpg')
 
     return str(resp)
