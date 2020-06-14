@@ -1,6 +1,7 @@
 #https://ccr-whatsapp.herokuapp.com/ -*- coding: utf-8 -*-
 
-TypeToService = ["WIFI", "COMIDA", "ESTACIONAMENTO", "OUTRO1", "OUTRO1", "OUTRO1", "OUTRO1"]
+TypeToService = ["", "Wifi", "Banho", "Comida", "Estacionamento", "Pernoite", "Borracharia"]
+TypeToIcon = ["📡", "" "🚿", "🍲", "🅿️", "🛏️", "🛠️"]
 
 from data import get_places
 
@@ -12,7 +13,7 @@ from twilio.twiml.messaging_response import MessagingResponse
 app = Flask(__name__)
 
 place_template_instance = """
-*%s*
+*\*%s\**
 %.1f Km de distância
 Nota Geral %.1f %s
 Preço: %s
@@ -21,11 +22,12 @@ Avaliações: %d
 """
 
 places_template = """
+Aqui estão algumas opções que conseguimos encontrar:
 
-HEADER
 %s
 
-FOOTER
+Para navegar, X
+Para detalhes, Y
 
 """
 
@@ -66,7 +68,7 @@ def bot():
         items = []
 
         for place in places:
-            services_str = "\n".join(["- " + TypeToService[int(service["type"])] for service in place['services']])
+            services_str = "\n".join([TypeToIcon[int(service["type"])] + " " + TypeToService[int(service["type"])] for service in place['services']])
             place_str = place_template_instance % (place['name'], place['distance'], place['rating'], getRating(place['rating']), getPrice(place['price']), place['numEvaluations'], services_str)
             items.append(place_str)
 
