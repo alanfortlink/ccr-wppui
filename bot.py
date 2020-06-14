@@ -30,7 +30,7 @@ FOOTER
 """
 
 def getRating(rating):
-    return '☆' * int(rating)
+    return '⭐️' * int(rating)
 
 @app.route('/bot', methods=['POST'])
 def bot():
