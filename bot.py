@@ -13,12 +13,12 @@ from twilio.twiml.messaging_response import MessagingResponse
 app = Flask(__name__)
 
 place_template_instance = """
-```**%s**
+**%s**
 %.1f Km de distância
 Nota Geral %.1f %s
 Preço: %s
 Avaliações: %d
-%s```
+%s
 """
 
 places_template = """
