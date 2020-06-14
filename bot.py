@@ -1,5 +1,7 @@
 #https://ccr-whatsapp.herokuapp.com/ -*- coding: utf-8 -*-
 
+TypeToService = ["WIFI", "COMIDA", "ESTACIONAMENTO", "OUTRO1", "OUTRO1", "OUTRO1", "OUTRO1"]
+
 from data import get_places
 
 from flask import Flask, request
@@ -10,14 +12,21 @@ from twilio.twiml.messaging_response import MessagingResponse
 app = Flask(__name__)
 
 place_template_instance = """
-Place: *%s*\\n
+*%s*
+%.1f Km de distância
+Nota Geral %.1f
+Preço: %d
+Avaliações: %d
+%s
 """
 
 places_template = """
-\\n
-HEADER\\n
-%s\\n
-FOOTER\\n
+
+HEADER
+%s
+
+FOOTER
+
 """
 
 @app.route('/bot', methods=['POST'])
@@ -44,7 +53,9 @@ def bot():
         items = []
 
         for place in places:
-            items.append(place_template_instance % (place['name']))
+            services_str = "\n".join(["- " + TypeToService[int(service["type"])] for service in place['services']])
+            place_str = place_template_instance % (place['name'], place['distance'], place['rating'], place['price'], place['numEvaluations'], services_str)
+            items.append(place_str)
 
         msg.body(places_template % '\n'.join(items))
         responded = True
@@ -58,4 +69,4 @@ def bot():
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='127.0.0.1', port=port)
