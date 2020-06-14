@@ -39,7 +39,7 @@ def getRandomMessage():
         'https://www.rm.co.mz/rm.co.mz/media/k2/items/cache/e3547aa5163be1cf0308beec1632f77e_XL.jpg'
     ]
 
-    index = random.nextInt(0, len(messages))
+    index = random.randint(0, len(messages) - 1)
     return messages[index]
 
 def getRating(rating):
