@@ -15,7 +15,7 @@ place_template_instance = """
 *%s*
 %.1f Km de distância
 Nota Geral %.1f %s
-Preço: %d
+Preço: %s
 Avaliações: %d
 %s
 """
@@ -31,6 +31,16 @@ FOOTER
 
 def getRating(rating):
     return '⭐️' * int(rating)
+
+def getPriceText(price):
+    if price <= 2:
+        return "Baixo"
+    if price <= 4:
+        return "Médio"
+    return "Alto"
+
+def getPrice(price):
+    return '💰' * int(price) + "(" + getPriceText(price) + ")"
 
 @app.route('/bot', methods=['POST'])
 def bot():
@@ -57,7 +67,7 @@ def bot():
 
         for place in places:
             services_str = "\n".join(["- " + TypeToService[int(service["type"])] for service in place['services']])
-            place_str = place_template_instance % (place['name'], place['distance'], place['rating'], getRating(place['rating']), place['price'], place['numEvaluations'], services_str)
+            place_str = place_template_instance % (place['name'], place['distance'], place['rating'], getRating(place['rating']), getPrice(place['price']), place['numEvaluations'], services_str)
             items.append(place_str)
 
         msg.body(places_template % '\n'.join(items))
