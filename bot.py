@@ -11,7 +11,7 @@ import requests
 import random
 from twilio.twiml.messaging_response import MessagingResponse
 
-call = 0
+calls = 0
 
 app = Flask(__name__)
 
@@ -84,9 +84,10 @@ def bot():
         msg.body(places_template % (get_weather(location_lat, location_lon), '\n'.join(items)))
         responded = True
 
-    call += 1
-    if call == 5:
-        call = 0
+    global calls
+    calls += 1
+    if calls == 5:
+        calls = 0
         msg.media(getRandomMessage())
 
     if not responded:
