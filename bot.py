@@ -34,7 +34,9 @@ Para mais detalhes e outras opções, acesse https://www.caminhoneirozap.com.br?
 
 def getRandomMessage():
     messages = [
-            'http://www.google.com'
+        'https://scontent-lhr8-1.xx.fbcdn.net/v/t1.0-9/102919628_3218256124892835_456269927930658816_n.png?_nc_cat=111&_nc_sid=8024bb&_nc_ohc=d0iedhVnvRIAX9NBRub&_nc_ht=scontent-lhr8-1.xx&_nc_rmd=260&_nc_log=1&oh=40f6ef5a5a3df9fc801faea44cfcca0e&oe=5F0D0B34',
+        'https://scontent-lht6-1.xx.fbcdn.net/v/t1.0-9/p960x960/91544282_3062610210457428_6616723309369229312_o.png?_nc_cat=106&_nc_sid=2d5d41&_nc_ohc=aaPmf4FnSGUAX_RqEHg&_nc_ht=scontent-lht6-1.xx&_nc_rmd=260&_nc_log=1&oh=e0edcd068732402e3d08a82a5ad0f32a&oe=5F0D46A2',
+        'https://www.rm.co.mz/rm.co.mz/media/k2/items/cache/e3547aa5163be1cf0308beec1632f77e_XL.jpg'
     ]
 
     index = random.nextInt(0, len(messages))
@@ -86,7 +88,7 @@ def bot():
 
     global calls
     calls += 1
-    if calls == 5:
+    if calls == 3:
         calls = 0
         msg.media(getRandomMessage())
 
