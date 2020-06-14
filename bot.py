@@ -29,7 +29,8 @@ places_template = """
 Aqui estão algumas opções que conseguimos encontrar:
 %s
 
-Para mais detalhes e outras opções, acesse https://www.caminhoneirozap.com.br?id=469827346-ae-28374-121365fe
+
+Para mais detalhes e outras opções, acesse https://caminhoneirozap.herokuapp.com/index.php?id=%s
 """
 
 def getRandomMessage():
@@ -93,7 +94,7 @@ def bot():
 
         for place in places:
             services_str = "\n".join([TypeToIcon[int(service["type"])] + " " + TypeToService[int(service["type"])] for service in place['services']])
-            place_str = place_template_instance % (place['name'], place['distance'], place['rating'], getRating(place['rating']), getPrice(place['price']), place['numEvaluations'], services_str)
+            place_str = place_template_instance % (place['name'], place['distance'], place['rating'], getRating(place['rating']), getPrice(place['price']), place['numEvaluations'], services_str, str(place['_id']))
             items.append(place_str)
 
         body = ""
