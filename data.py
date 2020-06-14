@@ -22,6 +22,7 @@ def getCelsius(kelvin):
 def get_places(lat, lon, id):
     r = requests.post(get_places_url, {"latitude": lat, "longitude": lon, "driverId": id}, verify=False)
     places = json.loads(r.content)
+    places = places[0:2]
     return places
 
 def get_weather(lat, lon):
