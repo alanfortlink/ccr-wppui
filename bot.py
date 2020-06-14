@@ -22,6 +22,8 @@ Nota Geral %.1f %s
 Preço: %s
 Avaliações: %d
 %s
+
+Para mais detalhes e outras opções, acesse https://caminhoneirozap.herokuapp.com/index.php?id=%s
 """
 
 places_template = """
@@ -29,8 +31,6 @@ places_template = """
 Aqui estão algumas opções que conseguimos encontrar:
 %s
 
-
-Para mais detalhes e outras opções, acesse https://caminhoneirozap.herokuapp.com/index.php?id=%s
 """
 
 def getRandomMessage():
