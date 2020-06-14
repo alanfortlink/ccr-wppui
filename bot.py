@@ -23,7 +23,7 @@ Preço: %s
 Avaliações: %d
 %s
 
-Para mais detalhes e outras opções, acesse https://caminhoneirozap.herokuapp.com/index.php?id=%s
+Para mais detalhes, avaliar, e outras opções, acesse https://caminhoneirozap.herokuapp.com/index.php?id=%s
 """
 
 places_template = """
