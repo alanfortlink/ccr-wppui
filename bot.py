@@ -27,7 +27,11 @@ Aqui estão algumas opções que conseguimos encontrar:
 %s
 
 Para mais detalhes e outras opções, acesse https://www.caminhoneirozap.com.br?id=469827346-ae-28374-121365fe
+%s
 """
+
+def getExtra():
+    return ""
 
 def getRating(rating):
     return '⭐️' * int(rating)
@@ -70,7 +74,7 @@ def bot():
             place_str = place_template_instance % (place['name'], place['distance'], place['rating'], getRating(place['rating']), getPrice(place['price']), place['numEvaluations'], services_str)
             items.append(place_str)
 
-        msg.body(places_template % (get_weather(location_lat, location_lon), '\n'.join(items)))
+        msg.body(places_template % (get_weather(location_lat, location_lon), '\n'.join(items), getExtra()))
         responded = True
 
         # return a cat pic
